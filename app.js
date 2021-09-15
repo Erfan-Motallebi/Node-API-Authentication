@@ -23,7 +23,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(
   compression({
-    level: 9,
+    level: 7,
+    threshold: "500kb",
+    filter: (req, res) => {
+      if (req.headers["x-no-compression"]) {
+        return false;
+      }
+      return compression.filter(req, res);
+    },
   })
 );
 app.use(responseTime());
