@@ -4,8 +4,7 @@
 
 # Localhost server
 GET {{localhost}}/
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiRXJpYyIsImlzcyI6Ik5vZGVBcGlBdXRoIiwiaWF0IjoxNjMxNjQ1MDc3LCJleHAiOjE2MzE2NDg2NzcsImF1ZCI6Ik5hTiJ9.ttRloOYFpoZZg4ZcaTEDsZrD9sbDiZJ6a4ABHqegWAI
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiRXJpYyIsImlzcyI6Ik5vZGVBcGlBdXRoIiwiaWF0IjoxNjMxNzA0NjU2LCJleHAiOjE2MzE3MDgyNTYsImF1ZCI6IjYxNDBmMzlhZTE4NDE0MjQzNDg0MTJkNCJ9.EITfKK08aOSmYp-51Efasncj9q9Yldgw5LD_GYMdl7Q
 
 ###  Register Route
 POST {{localhost}}/auth/register

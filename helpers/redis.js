@@ -1,8 +1,10 @@
 //  LIBRARIES:
-const redis = require("redis");
+const { createClient } = require("redis");
 const chalk = require("chalk");
 
-const client = redis.createClient();
+// const { REDIS_PORT, REDIS_HOST } = process.env;
+
+const client = createClient();
 
 client.on("connect", () => {
   console.log(chalk.red.bold("Redis is connecting . . . "));
@@ -34,4 +36,4 @@ process.on("uncaughtException", (reason, promise) => {
   process.exit(1);
 });
 
-module.exports = client;
+module.exports = { client };

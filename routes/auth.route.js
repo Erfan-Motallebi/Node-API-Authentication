@@ -2,22 +2,22 @@
 const { Router } = require("express");
 const createHttpError = require("http-errors");
 const route = Router();
-const limiter = require("express-rate-limit");
+const RateLimiter = require("express-rate-limit");
 
-const requestThrottler = limiter({
+const requestThrottler = RateLimiter({
   windowMs: 10 * 60 * 1000,
   max: 10,
   message: {
-    status: "404",
+    status: "429",
     message: "Too many request",
   },
 });
 
-const loginThrottler = limiter({
+const loginThrottler = RateLimiter({
   windowMs: 20 * 60 * 1000,
-  max: 10,
+  max: 30,
   message: {
-    status: "404",
+    status: "429",
     message: "Too many request",
   },
 });
@@ -30,6 +30,10 @@ const {
   signRefreshToken,
   verifyRefreshToken,
 } = require("../helpers/JWTCheck");
+
+/**
+ * @DDOS Redis Rate Limiter
+ */
 
 /**
  * @Route Register

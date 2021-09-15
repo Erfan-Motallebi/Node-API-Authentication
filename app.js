@@ -5,13 +5,15 @@ const chalk = require("chalk");
 const createHttpError = require("http-errors");
 const https = require("https");
 const { readFileSync } = require("fs");
+const path = require("path");
+const compression = require("compression");
+const responseTime = require("response-time");
 require("dotenv").config();
 
 // FILES:
 const { S_PORT, S_SERVER } = process.env;
 const authRouter = require("./routes/auth.route");
 const { verifyAccessToken } = require("./helpers/JWTCheck");
-const path = require("path");
 require("./helpers/database");
 require("./helpers/redis");
 
@@ -19,9 +21,15 @@ const app = express();
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(
+  compression({
+    level: 9,
+  })
+);
+app.use(responseTime());
 
-app.get("/", verifyAccessToken, (req, res) => {
-  res.send("Home page");
+app.get("/", (req, res) => {
+  res.send("home page".repeat(100000));
 });
 
 app.use("/auth", authRouter);

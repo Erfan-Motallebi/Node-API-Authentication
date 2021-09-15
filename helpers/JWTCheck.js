@@ -3,7 +3,7 @@ const createHttpError = require("http-errors");
 const JWT = require("jsonwebtoken");
 
 // FILES:
-const client = require("../helpers/redis");
+const { client } = require("../helpers/redis");
 const { PRIVATE_ACCESS_TOKEN, PRIVATE_REFRESH_TOKEN } = process.env;
 
 module.exports = {
