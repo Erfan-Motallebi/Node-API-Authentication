@@ -29,8 +29,13 @@ POST {{localhost}}/auth/refresh-token
 Content-Type: application/json
 
 {
-    "refreshToken" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiRXJpYyIsImlzcyI6Ik5vZGVBcGlBdXRoIiwiaWF0IjoxNjMxNjQ1MDY3LCJleHAiOjE2NjMyMDI2NjcsImF1ZCI6IjYxNDBjOTdlZTQ1NmU1MjMzMmE4Nzg0MCJ9.RvNXu5JQE8rngJdKYPwKbEu2zwK0SDTqNY2Ko1xmLhI"
+    "refreshToken" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiRXJpYyIsImlzcyI6Ik5vZGVBcGlBdXRoIiwiaWF0IjoxNjMyMDc2Mjg1LCJleHAiOjE2NjM2MzM4ODUsImF1ZCI6IjYxNDBmMzlhZTE4NDE0MjQzNDg0MTJkNCJ9.jLUtemwMhxXH_I856uhVYkBosAg_dketojEhaM5cpTA"
 }
 
 ### Logout Route
 DELETE {{localhost}}/auth/logout
+Content-Type: application/json
+
+{
+    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiRXJpYyIsImlzcyI6Ik5vZGVBcGlBdXRoIiwiaWF0IjoxNjMyMDc2MzUzLCJleHAiOjE2NjM2MzM5NTMsImF1ZCI6IjYxNDBmMzlhZTE4NDE0MjQzNDg0MTJkNCJ9.UdTmfx0ZD_qqWrvcHxmty2qkjbyoIMc5GBWfK-3vGKA"
+}
