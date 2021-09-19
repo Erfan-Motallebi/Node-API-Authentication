@@ -22,7 +22,7 @@ client.on("end", () => {
   console.log(chalk.bold.blue("Redis is saying GoodBye."));
 });
 
-process.on("SIGINT", async () => {
+process.on("SIGINT", () => {
   client.quit();
   process.exit(1);
 });

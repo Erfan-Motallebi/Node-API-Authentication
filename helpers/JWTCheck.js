@@ -82,9 +82,9 @@ module.exports = {
             throw createHttpError.Unauthorized();
           throw createHttpError.InternalServerError(err.message);
         }
-        client.GET(String(payload.aud), (err, userId) => {
+        client.GET(payload.aud, (err, reply) => {
           if (err) throw createHttpError.InternalServerError();
-          pass(userId);
+          if (reply) pass(payload.aud);
         });
       });
     });

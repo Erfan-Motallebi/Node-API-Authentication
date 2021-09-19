@@ -30,6 +30,7 @@ const {
   signRefreshToken,
   verifyRefreshToken,
 } = require("../helpers/JWTCheck");
+const { client } = require("../helpers/redis");
 
 /**
  * @DDOS Redis Rate Limiter
@@ -95,6 +96,7 @@ route.post("/login", loginThrottler, async (req, res, next) => {
 route.post("/refresh-token", async (req, res) => {
   const { refreshToken } = req.body;
   const userId = await verifyRefreshToken(refreshToken);
+  console.log(userId);
   const accessToken = await signAccessToken(parseInt(userId));
   res.send({ accessToken, refreshToken });
 });
@@ -103,8 +105,19 @@ route.post("/refresh-token", async (req, res) => {
  * @route Logout Route
  */
 
-route.delete("/logout", (req, res) => {
-  res.send({ logout: "LogOut" });
+route.delete("/logout", async (req, res) => {
+  try {
+    const { refreshToken } = req.body;
+    if (!refreshToken) throw createHttpError.BadRequest();
+    const userId = await verifyRefreshToken(refreshToken);
+    client.DEL(String(userId), (err, reply) => {
+      if (err) throw createHttpError.InternalServerError();
+      console.log(`Reply: ${reply}`);
+      res.sendStatus(204);
+    });
+  } catch (error) {
+    next(error);
+  }
 });
 
 module.exports = route;
